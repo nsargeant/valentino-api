@@ -1,0 +1,29 @@
+{
+  "name": "valentino-api",
+  "version": "1.0.0",
+  "description": "Valentino API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsargeant/valentino-api.git"
+  },
+  "keywords": [
+    "true",
+    "love"
+  ],
+  "author": "Nathan Sargeant <nathan.s.sargeant@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nsargeant/valentino-api/issues"
+  },
+  "homepage": "https://github.com/nsargeant/valentino-api#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.7"
+  }
+}
