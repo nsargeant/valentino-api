@@ -3,7 +3,12 @@ module.exports = class Repository {
     this.model = model;
   }
 
-  selectAll({ query = {} }, callback) {
+  selectAll({context, query = {} }, callback) {
     this.model.find(query, callback);
+  }
+
+  create({context, data}, callback) {
+    const instance = new this.model(data);
+    instance.save(callback);
   }
 }

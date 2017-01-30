@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Valentino API Test Client</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+  <main>
+    <section class="users">
+      <h2>Create User</h2>
+      <form action="/users" method="post">
+        <input name="first-name" type="text" placeholder="first name" required>
+        <input name="last-name" type="text" placeholder="last name" required>
+        <input type="submit">
+      </form>
+    </section>
+    <section class="test">
+      <h2>Create Test</h2>
+      <form action="/tests" method="post">
+        <input name="test-name" type="text" placeholder="test name" required>
+        <h3>Questions</h3>
+        <ol class="questions-wrapper">
+        </ol>
+        <button id="add-question" type="button">+</button>
+        <input id="save-test" type="submit">
+      </form>
+    </section>
+  </main>
+  <script src="/static/index.js"></script>
+</body>
+</html>

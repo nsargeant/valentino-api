@@ -1,22 +1,25 @@
+const uuid = require('node-uuid');
+
 class Service {
-  constructor({ repository = null, model = null, schema = null }) {
+  constructor({ repository = null, model = null}) {
     this.repository = repository;
     this.model = model;
-    this.schema = schema;
   }
 
-  mapOne(data) {
-    return data
+  mapInput(data) {
+    console.log('using default mapInput');
+    return data;
   }
-  
-  mapAll(data) {
-    return mapOne(data)
+
+  mapOutput(data) {
+    console.log('using default mapOutput');
+    return data;
   }
   
   selectAll(options, callback) {
     // TODO options
     this.repository.selectAll(options, (err, results) => {
-      callback(err, results.map(this.mapAll));
+      callback(err, results.map((item) => (this.mapOutput(item)) ));
     });
   }
 
@@ -48,21 +51,15 @@ class Service {
   //   });
   // }
 
-  // create(context, reqBody, callback) {
-  //   var self = this;
-
-  //   var model = new this.model();
-  //   model.assign(reqBody);
-  //   model.verify(function (err) {
-  //     if (err) {
-  //       return callback(err, null);
-  //     }
-  //     model.createNewId();
-  //     self.repository.create(model, function (err, result) {
-  //       callback(err, result ? model : null);
-  //     });
-  //   });
-  // }
+  create({context, data}, callback) {
+    const model = this.mapInput(data);
+    model.id = uuid.v4();
+    //TODO validate
+    this.repository.create({ data: model }, (err, result) => {
+      const mappedResult = this.mapOutput(result);
+      callback(err, mappedResult);
+    });
+  }
 
   // update(context, id, reqBody, callback) {
   //   var self = this;

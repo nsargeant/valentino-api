@@ -1,13 +1,23 @@
 const Service = require('../../common/service'),
-  repository = require('./user.repository');
-  model = repository.model;
+  repository = require('./user.repository'),
+  { model } = repository;
 
 class UserService extends Service {
-  constructor(options) {
-    super(options);
+  mapInput (user = {}) {
+    const {id, ['first-name'] : firstName, ['last-name'] : lastName} = user;
+    return {
+      id,
+      firstName,
+      lastName
+    };
   }
-  mapOne (user = {}) {
-    return user;
+
+  mapOutput ({id, firstName, lastName}) {
+    return {
+      id,
+      firstName,
+      lastName
+    };
   }
 }
 

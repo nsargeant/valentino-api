@@ -1,11 +1,12 @@
-//Test Schema
+//Response Schema
 const Schema = require('mongoose').Schema;
 
 module.exports = Schema({
   id: String,
-  name: String,
-  uri: String,
-  questions: {
+  user: String,
+  test: String,
+  date: Date,
+  answers: {
     'type': Array,
     'default': []
   }

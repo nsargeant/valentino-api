@@ -1,4 +1,5 @@
 const express = require('express'),
+  path = require('path'),
   bodyParser = require('body-parser'),
   cors = require('cors'),
   mongoose = require('mongoose'),
@@ -10,8 +11,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use('/static', express.static(path.join(__dirname, 'client')));
+
 app.use('/users', routes.user);
 app.use('/tests', routes.test);
+app.use('/responses', routes.response);
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);

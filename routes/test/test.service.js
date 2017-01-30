@@ -1,13 +1,29 @@
-const Service = require('../../common/service'),
-  repository = require('./test.repository');
-  model = repository.model;
+const uuid = require('node-uuid'),
+  Service = require('../../common/service'),
+  repository = require('./test.repository'),
+  { model } = repository;
 
 class TestService extends Service {
-  constructor(options) {
-    super(options);
+  mapInput (test = {}) {
+    const {id, ['test-name'] : name, questions} = test;
+
+    return {
+      id,
+      uri: name.toLowerCase().replace(' ', '-'),
+      name,
+      questions: questions.map((text) => ({
+        id: uuid.v4(),
+        text
+      }))
+    };
   }
-  mapOne (test = {}) {
-    return test;
+
+  mapOutput ({ id, name, questions }) {
+    return {
+      id,
+      name,
+      questions
+    };
   }
 }
 
